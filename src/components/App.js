@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Header from './contents/Header';
 
 class App extends React.Component {
   render () {
@@ -6,6 +7,7 @@ class App extends React.Component {
       <div>
         <div className="container">
           <h1>ShowTech</h1>
+          <Header/>
           {this.props.children}
         </div>
       </div>
