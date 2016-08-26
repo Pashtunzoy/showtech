@@ -4,8 +4,9 @@
   "description": "An app for event ticketing using Stripe",
   "main": "server.js",
   "scripts": {
-    "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "start": "./node_modules/.bin/babel-node server.js",
+    "prestart-dev": "babel-node tools/startMessage.js",
+    "start-dev": "npm-run-all --parallel open:src lint:watch test:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",

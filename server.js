@@ -10,12 +10,16 @@ require('dotenv').config();
 
 const port = 3000;
 const app = express();
-const template = fs.readFileSync('./src/email.hjs', 'utf-8');
-const compiledTemplate = Hogan.compile(template);
+app.use(express.static('dist'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+const template = fs.readFileSync('./dist/email.hjs', 'utf-8');
+const compiledTemplate = Hogan.compile(template);
+
 
 // Stripe library usage
 const {MAILGUN_API_KEY, MAILGUN_DOMAIN, FROM_WHO} = process.env;
