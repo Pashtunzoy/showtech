@@ -1,0 +1,117 @@
+$one: 100% / 12;
+$two: 100% / 12 * 2;
+$three: 100% / 12 * 3;
+$four: 100% / 12 * 4;
+$five: 100% / 12 * 5;
+$six: 100% / 12 * 6;
+$siven: 100% / 12 * 7;
+$eigth: 100% / 12 * 8;
+$nine: 100% / 12 * 9;
+$ten: 100% / 12 * 10;
+$eleven: 100% / 12 * 11;
+$twelve: 100% / 12 * 12;
+
+@media (min-width: 769px) {
+  [class^="col-"] {
+    float: left;
+    padding: 0 1rem;
+  }
+
+  .col-one {
+    width: $one;
+  }
+
+  .col-two {
+    width: $two;
+  }
+
+  .col-three {
+    width: $three;
+  }
+
+  .col-four {
+    width: $four;
+  }
+
+  .col-five {
+    width: $five;
+  }
+
+  .col-six {
+    width: $six;
+  }
+
+  .col-siven {
+    width: $siven;
+  }
+
+  .col-eigth {
+    width: $eigth;
+  }
+
+  .col-nine {
+    width: $nine;
+  }
+
+  .col-ten {
+    width: $ten;
+  }
+
+  .col-eleven {
+    width: $eleven;
+  }
+
+  .col-twelve {
+    width: $twelve;
+  }
+
+  /*****************************OFFSETS*********************************/
+
+  .col-one-offset {
+    margin: 0 $one;
+  }
+
+  .col-two-offset {
+    margin: 0 $two;
+  }
+
+  .col-three-offset {
+    margin: 0 $three;
+  }
+
+  .col-four-offset {
+    margin: 0 $four;
+  }
+
+  .col-five-offset {
+    margin: 0 $five;
+  }
+
+  .col-six-offset {
+    margin: 0 $six;
+  }
+
+  .col-siven-offset {
+    margin: 0 $siven;
+  }
+
+  .col-eigth-offset {
+    margin: 0 $eigth;
+  }
+
+  .col-nine-offset {
+    margin: 0 $nine;
+  }
+
+  .col-ten-offset {
+    margin: 0 $ten;
+  }
+
+  .col-eleven-offset {
+    margin: 0 $eleven;
+  }
+
+  .col-twelve-offset {
+    margin: 0 $twelve;
+  }
+}

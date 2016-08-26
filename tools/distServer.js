@@ -1,35 +1,25 @@
+/* eslint-disable no-console */
 import express from 'express';
 import bodyParser from 'body-parser';
-import webpack from 'webpack';
 import path from 'path';
 import Hogan from 'hogan.js';
 import fs from 'fs';
-import config from '../webpack.config.dev';
+import compression from 'compression';
 require('dotenv').config();
+
 
 /* eslint-disable no-console */
 
+const port = 3000;
 const app = express();
-const compiler = webpack(config);
-const template = fs.readFileSync('./src/email.hjs', 'utf-8');
-const compiledTemplate = Hogan.compile(template);
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath,
-  headers: { 'Access-Control-Allow-Origin': '*' }
-}));
-
-app.use(require('webpack-hot-middleware')(compiler));
-
-
+app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// console.log(process.env);
-
+const template = fs.readFileSync('./dist/email.hjs', 'utf-8');
+const compiledTemplate = Hogan.compile(template);
 
 // Stripe library usage
 const {MAILGUN_API_KEY, MAILGUN_DOMAIN, FROM_WHO} = process.env;
@@ -51,8 +41,6 @@ app.post('/payment', (req, res) => {
       event: event
     }
   }, function(err, charge) {
-    // console.log(charge);
-    // console.log(charge.metadata.email);
       if(err) {
         res.json({err});
       } else {
@@ -69,28 +57,14 @@ app.post('/payment', (req, res) => {
         };
         mailgun.messages().send(data, function (error, body) {
           if (err) throw err;
-          console.log('------------EMAIL-----------------');
-          console.log(body);
         });
-        console.log('---------Req Body---------------');
-        console.log(req.body);
-
-        console.log('-------------CHARGE DETAILS------------');
-        console.log(charge);
-
-        console.log('---------Charge Description---------------');
-        console.log(req.body.amount);
-        console.log(ticketNumb);
-        console.log(amount);
-        console.log(charge.description);
-
         res.json(charge);
       }
   });
 });
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../src/index.html'));
+  res.sendFile(path.join( __dirname, '../dist/index.html'));
 });
 
 app.set("port", process.env.PORT || 3000);
